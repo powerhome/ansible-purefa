@@ -11,14 +11,18 @@
 
 - name: Print array information when -v is passed
   debug:
-    msg: "{{ array_info.purefa_info }}"
+    msg: "{{ array_info }}"
     verbosity: 1
+  when: array_info is defined
 
 - name: Manage array name
   purefa_arrayname:
     name: "{{ purefa_array_name }}"
     fa_url: "{{ purefa_url }}"
     api_token: "{{ purefa_api_token }}"
+  when: purefa_array_name is defined
+  tags:
+  - purefa_array_name
 
 - name: Manage Phonehome
   purefa_phonehome:
