@@ -3,13 +3,29 @@ Purefa
 
 Configure PURE FlashArray.
 
+To download the role you can use `ansible-galaxy`. For that create a file `requirements.yml` with the following content:
+
+```yml
+---
+# purefa role
+- src: https://github.com/powerhome/ansible-purefa
+  version: master
+  name: powerhome.purefa
+
+```
+
+Afte that run the command:
+```
+ansible-galaxy role install -r requirements.yml -p <ansible_roles_directory_path>
+```
+
 PS: This role isn't tested with molecule since there isn't a way to provision a test environment. Molecule was used only to create the directory hierarchy.
 
 Requirements
 ------------
 
 * `python 3`
-* `purestorage`
+* `purestorage 1.18.1`
 ```
 pip install purestorage
 ```
@@ -36,7 +52,7 @@ passed in as parameters) is always nice for users too:
 
     - hosts: servers
       roles:
-         - { role: purefa, x: 42 }
+         - { role: powerhome.purefa, purefa_url: pure.com, purefa_api_token: api_token }
 
 License
 -------
