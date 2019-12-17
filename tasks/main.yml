@@ -9,12 +9,6 @@
     api_token: "{{ purefa_api_token }}"
   register: array_info
 
-- name: Print array information when -v is passed
-  debug:
-    msg: "{{ array_info }}"
-    verbosity: 1
-  when: array_info is defined
-
 - name: Manage array name
   purefa_arrayname:
     name: "{{ purefa_array_name }}"
