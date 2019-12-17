@@ -73,6 +73,7 @@
   tags:
   - purefa_ldap
 
+# module is not idempotent
 - name: Manage v2c SNMP manager
   purefa_snmp:
     state: "{{ item.state | default('present') }}"
