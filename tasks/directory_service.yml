@@ -24,6 +24,7 @@
       base_dn: "{{ purefa_ldap.base_dn }}"
       bind_user: "{{ purefa_ldap.bind_user }}"
       bind_password: "{{ purefa_ldap_bind_password }}"
+      group_base: "{{ purefa_ldap.group_base }}"
       state: "{{ purefa_ldap.state | default('present')}}"
       fa_url: "{{ purefa_url }}"
       api_token: "{{ purefa_api_token }}"
@@ -39,7 +40,7 @@
 
   - name: Manage storage admin role 5.2.0 or higher
     purefa_dsrole:
-      role: array_admin
+      role: storage_admin
       group_base: "{{ purefa_ldap.group_base }}"
       group: "{{ purefa_ldap.sa_group }}"
       state: "{{ 'present' if purefa_ldap.sa_group is defined else 'absent' }}"
@@ -48,7 +49,7 @@
 
   - name: Manage ops admin role 5.2.0 or higher
     purefa_dsrole:
-      role: array_admin
+      role: ops_admin
       group_base: "{{ purefa_ldap.group_base }}"
       group: "{{ purefa_ldap.oa_group }}"
       state: "{{ 'present' if purefa_ldap.oa_group is defined else 'absent' }}"
@@ -57,7 +58,7 @@
 
   - name: Manage readonly role 5.2.0 or higher
     purefa_dsrole:
-      role: array_admin
+      role: readonly
       group_base: "{{ purefa_ldap.group_base }}"
       group: "{{ purefa_ldap.ro_group }}"
       state: "{{ 'present' if purefa_ldap.ro_group is defined else 'absent' }}"
